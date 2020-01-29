@@ -1,7 +1,7 @@
 class Board
   def render ship = nil
-    core_grid = (1..10).to_a.map.with_index { |y_num, y| 
-      "| " + (1..10).to_a.map.with_index { |x_num, x| 
+    core_grid = (1..10).to_a.map.with_index { |_, y| 
+      "| " + (1..10).to_a.map.with_index { |_, x| 
         ship && ship.location.include?([x, y]) ? 'x' : '•'
       }.join(' ') + " | #{(y + 1).to_s.ljust 2, ' '}"
     }.join("\n")
