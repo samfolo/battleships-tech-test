@@ -1,18 +1,27 @@
 class Board
-  def render
-    x_coordinates = "  A B C D E F G H I J     "
-    border = "+ - - - - - - - - - - +   "
-    first_nine_lines = (1..9).to_a.map { |num| "| #{render_nodes} | #{num} " }.join("\n")
+  def render ship = nil
+    first_nine_lines = (1..9).to_a.map.with_index { |num, i| 
+      ship && i.zero? ? "| x x x x #{render_nodes 6} | #{num} " :
+      "| #{render_nodes 10} | #{num} "
+    }.join("\n")
     tenth_line = "| • • • • • • • • • • | 10"
     
-    [x_coordinates, border, first_nine_lines, tenth_line, border].join("\n")
+    [header, border, first_nine_lines, tenth_line, border].join("\n")
   end
 
   private
 
-  def render_nodes
+  def render_nodes num
     line = []
-    10.times { line << "•" }
+    num.times { line << "•" }
     line.join ' '
+  end
+
+  def header
+    "  A B C D E F G H I J     "
+  end
+
+  def border
+    "+ - - - - - - - - - - +   "
   end
 end
