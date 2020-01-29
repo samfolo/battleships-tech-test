@@ -1,14 +1,16 @@
 class Ship
+  X_AXIS = { 
+    'A' => 0, 'B' => 1, 'C' => 2, 'D' => 3, 'E' => 4, 
+    'F' => 5, 'G' => 6, 'H' => 7, 'I' => 8, 'J' => 9 
+  }
+
   def initialize coordinate
     @coordinate = coordinate
   end
 
   def location
-    case @coordinate
-    when 'A1' then [[0, 0], [1, 0], [2, 0], [3, 0]]
-    when 'B8' then [[1, 7], [2, 7], [3, 7], [4, 7]]
-    when 'C3' then [[2, 2], [3, 2], [4, 2], [5, 2]]
-    when 'F10' then [[5, 9], [6, 9], [7, 9], [8, 9]]
-    end
+    x = X_AXIS[@coordinate[0]]
+    y = @coordinate[1..-1].to_i - 1
+    [[x, y], [x + 1, y], [x + 2, y], [x + 3, y]]
   end
 end
