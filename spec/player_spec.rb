@@ -2,6 +2,7 @@ require 'player'
 
 RSpec.describe Player do
   let(:test_board_instance) { double :board, render: empty_board }
+  let(:test_ship) { double :ship }
   let(:test_player) { Player.new test_board_instance }
   let(:empty_board) {
     l01 = "  A B C D E F G H I J     "
@@ -23,6 +24,15 @@ RSpec.describe Player do
 
   it 'begins with an empty board' do
     expect(test_player.render_board).to eq empty_board
+  end
+
+  it 'initially has 0 ships stored' do
+    expect(test_player.ship_count).to be 0
+  end
+
+  it 'can hold ships' do
+    test_player.store_ship test_ship
+    expect(test_player.ship_count).to be 1
   end
 
   it 'can place a ship on its board' do
