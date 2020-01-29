@@ -2,21 +2,19 @@ require_relative 'board'
 require_relative 'ship'
 
 class Player
-  def initialize board = Board.new, ships = []
+  def initialize board = Board.new, ships = [], ship_class = Ship
     @board = board
     @ships = ships
+    @ship_class = ship_class
   end
 
   def render_board
-    @board.render
+    @board.render @ships
   end
 
   def place_ship coordinate
+    @ships << @ship_class.new(coordinate)
     puts "Ship placed at #{formatted coordinate}"
-  end
-
-  def store_ship ship
-    @ships << ship
   end
 
   def ship_count

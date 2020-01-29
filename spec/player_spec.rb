@@ -1,9 +1,10 @@
 require 'player'
 
 RSpec.describe Player do
+  let(:test_ship) { double :ship, location: [[0, 0], [1, 0], [2, 0], [3, 0]] }
+  let(:test_ship_class) { double :ship_class, new: test_ship }
   let(:test_board_instance) { double :board, render: empty_board }
-  let(:test_ship) { double :ship }
-  let(:test_player) { Player.new test_board_instance }
+  let(:test_player) { Player.new test_board_instance, [], test_ship_class }
   let(:empty_board) {
     l01 = "  A B C D E F G H I J     "
     l02 = "+ - - - - - - - - - - +   "
@@ -30,14 +31,15 @@ RSpec.describe Player do
     expect(test_player.ship_count).to be 0
   end
 
-  it 'can hold ships' do
-    test_player.store_ship test_ship
-    expect(test_player.ship_count).to be 1
-  end
-
   it 'can place a ship on its board' do
     confirmation = "Ship placed at B-2" + "\n"
 
-    expect { test_player.place_ship('B2') }.to output(confirmation).to_stdout
+    expect { test_player.place_ship 'B2' }.to output(confirmation).to_stdout
+  end
+
+  it 'keeps track of ships' do
+    test_player.place_ship 'F4'
+
+    expect(test_player.ship_count).to be 1
   end
 end

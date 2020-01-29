@@ -8,12 +8,6 @@ class Board
 
   private
 
-  def render_nodes num,
-    line = []
-    num.times { line << "•" }
-    line.join ' '
-  end
-
   def header
     "  A B C D E F G H I J     "
   end
