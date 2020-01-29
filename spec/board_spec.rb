@@ -96,25 +96,49 @@ RSpec.describe Board do
     [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13].join("\n")
   }
 
+  let(:test_board_five) {
+    l1 =  "  A B C D E F G H I J     "
+    l2 =  "+ - - - - - - - - - - +   "
+    l3 =  "| x x x x • • • • • • | 1 "
+    l4 =  "| • • • • • • • • • • | 2 "
+    l5 =  "| • • • • • • • • • • | 3 "
+    l6 =  "| • • • • • • x x x x | 4 "
+    l7 =  "| • • • • x x x x • • | 5 "
+    l8 =  "| • • • • • • • • • • | 6 "
+    l9 =  "| • • • • • • • • • • | 7 "
+    l10 = "| • x x x x • • • • • | 8 "
+    l11 = "| • • • • • • • • • • | 9 "
+    l12 = "| • • • • • • • • • • | 10"
+    l13 = "+ - - - - - - - - - - +   "
+    
+    [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13].join("\n")
+  }
+
   it 'at first renders itself with no ships' do
     expect(subject.render).to eq empty_board
   end
 
   describe '#render' do
     it 'renders a single ship passed as an argument by its coordinates' do
-      expect(subject.render test_ship_one).to eq test_board_one
+      expect(subject.render [test_ship_one]).to eq test_board_one
     end
 
     it 'renders a different ship passed as an argument by its coordinates' do
-      expect(subject.render test_ship_two).to eq test_board_two
+      expect(subject.render [test_ship_two]).to eq test_board_two
     end
 
     it 'renders another separate ship passed as an argument by its coordinates' do
-      expect(subject.render test_ship_three).to eq test_board_three
+      expect(subject.render [test_ship_three]).to eq test_board_three
     end
 
     it 'renders another separate ship passed as an argument by its coordinates' do
-      expect(subject.render test_ship_four).to eq test_board_four
+      expect(subject.render [test_ship_four]).to eq test_board_four
+    end
+
+    context 'rendering multiple ships' do
+      it 'renders the ships in an array passed as an argument by their coordinates' do
+        expect(subject.render [test_ship_one, test_ship_two, test_ship_three, test_ship_four]).to eq test_board_five
+      end
     end
   end 
 end
