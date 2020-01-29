@@ -1,2 +1,2 @@
-# tic-tac-toe-tech-test
-Tic Tac Toe – Technical Test: code quality; best practices; process.
+# battleships-tech-test
+Battleships – Technical Test: code quality; best practices; process.
