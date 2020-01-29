@@ -86,3 +86,29 @@ Complex verbs, more verbs than nouns
 Once the game has started, there will have to be a method on the game class which solely deals with commands entered via `STDIN.gets.chomp`, possibly a switch statement.
 
 Coordinates of the ship are decided clockwise from the point where the ship is placed: (include diagram for example)
+
+## Types of Problems
+
+### User actions
+• A user takes a shot <br/>
+• A user places a ship <br/>
+• A user views their shot history <br/>
+• Choosing a type of ship to create <br/>
+
+### User experience
+• A user wants to see their board <br/>
+• A user wants to enter a memorable command <br/>
+
+### Logging data
+• Keeping track of the shot history <br/>
+• Keeping track of buoyant and sunken ships <br/>
+
+### Evaluating games
+• Choosing a winner <br/>
+• Notifying the winner/loser <br/>
+
+### Creating assets
+• Creating a ship <br/>
+• Starting a game with two players <br/>
+
+I feel most confident in beginning with the `Player` class, as it appears to be the class most independent from the command line interface, mostly dealing with managing state and executing user actions.
