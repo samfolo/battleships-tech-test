@@ -1,8 +1,7 @@
-RSpec.describe "a player's board", type: :feature do
+require 'board'
 
-  scenario 'a player has no ships and views their board' do
-    player_one = Player.new
-
+RSpec.describe Board do
+  let(:empty_board) {
     l1 =  "  A B C D E F G H I J     "
     l2 =  "+ - - - - - - - - - - +   "
     l3 =  "| • • • • • • • • • • | 1 "
@@ -17,8 +16,10 @@ RSpec.describe "a player's board", type: :feature do
     l12 = "| • • • • • • • • • • | 10"
     l13 = "+ - - - - - - - - - - +   "
     
-    empty_board = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13].join("\n")
+    [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13].join("\n")
+  }
 
-    expect(player_one.render_board).to eq empty_board
+  it 'at first renders itself with no ships' do
+    expect(subject.render).to eq empty_board
   end
 end
