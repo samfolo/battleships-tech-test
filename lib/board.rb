@@ -1,7 +1,8 @@
 class Board
   def render ship = nil
     first_nine_lines = (1..9).to_a.map.with_index { |num, i| 
-      ship && i.zero? ? "| x x x x #{render_nodes 6} | #{num} " :
+      ship&.location&.first == [0, 0] && i.zero? ? "| x x x x #{render_nodes 6} | #{num} " :
+      ship&.location&.first == [6, 3] && i == 3 ? "| #{render_nodes 6} x x x x | #{num} " :
       "| #{render_nodes 10} | #{num} "
     }.join("\n")
     tenth_line = "| • • • • • • • • • • | 10"
