@@ -24,6 +24,6 @@ class Player
   private
 
   def formatted coordinate
-    coordinate.chars.join '-'
+    "#{coordinate[0]}-#{coordinate[1..-1]}"
   end
 end
