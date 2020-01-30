@@ -29,7 +29,8 @@ class Player
 
   def shot_at coordinate
     damage_coordinate = coordinate == 'D5' ? [3, 4] : 
-    coordinate == 'F6' ? [5, 5] : [0, 0]
+    coordinate == 'F6' ? [5, 5] :
+    coordinate == 'G10' ? [6, 9] : [0, 0]
     @board.add_damage_coordinate(damage_coordinate)
   end
 
