@@ -51,7 +51,7 @@ RSpec.describe Player do
     end
   end
 
-  it 'keeps track of ships' do
+  it 'keeps track of ship-count' do
     test_player.place_ship 'F4'
 
     expect(test_player.ship_count).to be 1

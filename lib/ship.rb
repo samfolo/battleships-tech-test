@@ -11,6 +11,6 @@ class Ship
   def location
     x = X_AXIS[@coordinate[0]]
     y = @coordinate[1..-1].to_i - 1
-    [[x, y], [x + 1, y], [x + 2, y], [x + 3, y]]
+    (0..3).to_a.map { |el| [x + el, y] }
   end
 end
