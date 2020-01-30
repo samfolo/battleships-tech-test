@@ -11,10 +11,6 @@ class Ship
   end
 
   def location
-    return [[0, 0], [0, 1], [0, 2], [0, 3]] if @coordinate == 'A1' && @orientation == 'South'
-    return [[3, 2], [3, 3], [3, 4], [3, 5]] if @coordinate == 'D3' && @orientation == 'South'
-    return [[9, 6], [9, 7], [9, 8], [9, 9]] if @coordinate == 'J6' && @orientation == 'South'
-
     x = X_AXIS[@coordinate[0]]
     y = @coordinate[1..-1].to_i - 1
     validate(assigned_coordinates_by x, y, @orientation)
@@ -28,10 +24,10 @@ class Ship
     }
   end
 
-  def assigned_coordinates_by x, y, orientation
+  def assigned_coordinates_by x_point, y_point, orientation
     case orientation
-    when 'East' then (0..3).to_a.map { |el| [x + el, y] }
-    when 'South' then (0..3).to_a.map { |el| [x, y + el] }
+    when 'East' then (0..3).to_a.map { |el| [x_point + el, y_point] }
+    when 'South' then (0..3).to_a.map { |el| [x_point, y_point + el] }
     end
   end
 end

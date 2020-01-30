@@ -88,6 +88,51 @@ RSpec.describe "a player's board", type: :feature do
     expect(player_one.render_board).to eq board
   end
 
+  scenario 'a player places a ship at F-4 facing south and views their board' do
+    l1 =  "  A B C D E F G H I J     "
+    l2 =  "+ - - - - - - - - - - +   "
+    l3 =  "| • • • • • • • • • • | 1 "
+    l4 =  "| • • • • • • • • • • | 2 "
+    l5 =  "| • • • • • • • • • • | 3 "
+    l6 =  "| • • • • • x • • • • | 4 "
+    l7 =  "| • • • • • x • • • • | 5 "
+    l8 =  "| • • • • • x • • • • | 6 "
+    l9 =  "| • • • • • x • • • • | 7 "
+    l10 = "| • • • • • • • • • • | 8 "
+    l11 = "| • • • • • • • • • • | 9 "
+    l12 = "| • • • • • • • • • • | 10"
+    l13 = "+ - - - - - - - - - - +   "
+    
+    board = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13].join("\n")
+
+    player_one.place_ship('F4', 'South')
+
+    expect(player_one.render_board).to eq board
+  end
+
+  scenario 'a player places a ship at C2 and another at F-4 (facing south) then views their board' do
+    l1 =  "  A B C D E F G H I J     "
+    l2 =  "+ - - - - - - - - - - +   "
+    l3 =  "| • • • • • • • • • • | 1 "
+    l4 =  "| • • x x x x • • • • | 2 "
+    l5 =  "| • • • • • • • • • • | 3 "
+    l6 =  "| • • • • • x • • • • | 4 "
+    l7 =  "| • • • • • x • • • • | 5 "
+    l8 =  "| • • • • • x • • • • | 6 "
+    l9 =  "| • • • • • x • • • • | 7 "
+    l10 = "| • • • • • • • • • • | 8 "
+    l11 = "| • • • • • • • • • • | 9 "
+    l12 = "| • • • • • • • • • • | 10"
+    l13 = "+ - - - - - - - - - - +   "
+    
+    board = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13].join("\n")
+
+    player_one.place_ship('C2')
+    player_one.place_ship('F4', 'South')
+
+    expect(player_one.render_board).to eq board
+  end
+
   context 'placements outside of the constraints of the board' do
     before(:each) do
       expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
