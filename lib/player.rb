@@ -15,7 +15,7 @@ class Player
   end
 
   def place_ship coordinate
-    if coordinate == 'I7' || coordinate == 'J5'
+    if coordinate == 'I7' || coordinate == 'J5' || coordinate == 'H4'
       puts CANNOT_PLACE_SHIP_HERE
     else
       @ships << @ship_class.new(coordinate)
