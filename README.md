@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/samfolo/battleships-tech-test.svg?branch=master)](https://travis-ci.com/samfolo/battleships-tech-test)
 # battleships-tech-test
 Battleships – Technical Test: code quality; best practices; process.
 
