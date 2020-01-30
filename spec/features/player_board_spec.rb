@@ -66,7 +66,7 @@ RSpec.describe "a player's board", type: :feature do
     expect(player_one.render_board).to eq board
   end
 
-  scenario 'a player places a ship at I-3 facing south and views their board' do
+  scenario 'a player places a ship at I-3 (facing South) and views their board' do
     l1 =  "  A B C D E F G H I J     "
     l2 =  "+ - - - - - - - - - - +   "
     l3 =  "| • • • • • • • • • • | 1 "
@@ -88,7 +88,7 @@ RSpec.describe "a player's board", type: :feature do
     expect(player_one.render_board).to eq board
   end
 
-  scenario 'a player places a ship at F-4 facing south and views their board' do
+  scenario 'a player places a ship at F-4 (facing South) and views their board' do
     l1 =  "  A B C D E F G H I J     "
     l2 =  "+ - - - - - - - - - - +   "
     l3 =  "| • • • • • • • • • • | 1 "
@@ -110,7 +110,7 @@ RSpec.describe "a player's board", type: :feature do
     expect(player_one.render_board).to eq board
   end
 
-  scenario 'a player places a ship at C2, another at F-4 (facing south) then views their board' do
+  scenario 'a player places a ship at C2, another at F-4 (facing South) then views their board' do
     l1 =  "  A B C D E F G H I J     "
     l2 =  "+ - - - - - - - - - - +   "
     l3 =  "| • • • • • • • • • • | 1 "
@@ -133,7 +133,7 @@ RSpec.describe "a player's board", type: :feature do
     expect(player_one.render_board).to eq board
   end
 
-  scenario 'a player places a ship at H-7 facing West, another at D-7 facing North, then views their board' do
+  scenario 'a player places a ship at H-7 facing West, another at D-7 (facing North, then views their board' do
     l1 =  "  A B C D E F G H I J     "
     l2 =  "+ - - - - - - - - - - +   "
     l3 =  "| • • • • • • • • • • | 1 "
@@ -210,6 +210,22 @@ RSpec.describe "a player's board", type: :feature do
       
       expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
       player_one.place_ship 'F5'
+    end
+
+    context 'intersecting ship placement attempts' do
+      scenario 'a player attempts to place a North-facing ship at H-6 after placing a  ship at F-5' do
+        player_one.place_ship 'F5'
+        
+        expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
+        player_one.place_ship 'H6', 'North'
+      end
+  
+      scenario 'a player attempts to place a South-facing ship at C-7 after placing a West-facing ship at E-9' do
+        player_one.place_ship 'E9', 'West'
+        
+        expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
+        player_one.place_ship 'C7', 'South'
+      end
     end
   end
 end
