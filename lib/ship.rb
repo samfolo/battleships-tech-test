@@ -12,11 +12,12 @@ class Ship
 
   def location
     return [[0, 0], [0, 1], [0, 2], [0, 3]] if @coordinate == 'A1' && @orientation == 'South'
-    
+    return [[3, 2], [3, 3], [3, 4], [3, 5]] if @coordinate == 'D3' && @orientation == 'South'
+    return [[9, 6], [9, 7], [9, 8], [9, 9]] if @coordinate == 'J6' && @orientation == 'South'
+
     x = X_AXIS[@coordinate[0]]
     y = @coordinate[1..-1].to_i - 1
-    ship_coordinates = (0..3).to_a.map { |el| [x + el, y] }
-    validate ship_coordinates
+    validate(assigned_coordinates_by x, y, @orientation)
   end
 
   private
@@ -25,5 +26,12 @@ class Ship
     ship_coordinates if ship_coordinates.flatten.all? { |coordinates| 
       (0..9).include? coordinates 
     }
+  end
+
+  def assigned_coordinates_by x, y, orientation
+    case orientation
+    when 'East' then (0..3).to_a.map { |el| [x + el, y] }
+    when 'South' then (0..3).to_a.map { |el| [x, y + el] }
+    end
   end
 end

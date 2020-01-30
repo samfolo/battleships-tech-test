@@ -66,7 +66,7 @@ RSpec.describe "a player's board", type: :feature do
     expect(player_one.render_board).to eq board
   end
 
-  xscenario 'a player places a ship at I-3 facing south and views their board' do
+  scenario 'a player places a ship at I-3 facing south and views their board' do
     l1 =  "  A B C D E F G H I J     "
     l2 =  "+ - - - - - - - - - - +   "
     l3 =  "| • • • • • • • • • • | 1 "
