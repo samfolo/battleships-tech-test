@@ -66,8 +66,6 @@ RSpec.describe "a player's board", type: :feature do
     expect(player_one.render_board).to eq board
   end
 
-  
-
   context 'placements outside of the constraints of the board' do
     before(:each) do
       expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
@@ -89,12 +87,23 @@ RSpec.describe "a player's board", type: :feature do
       player_one.place_ship 'H4'
     end
 
-    it 'a player attempts to place their ship at L-16' do
+    scenario 'a player attempts to place their ship at L-16' do
       player_one.place_ship 'L16'
     end
 
-    it 'a player attempts to place their ship at AA-8' do
+    scenario 'a player attempts to place their ship at AA-8' do
       player_one.place_ship 'AA8'
+    end
+  end
+
+  context 'overlapping ships' do
+    scenario 'a player attempts to place their ship at A-1 after placing a ship at C-1' do
+      player_one.place_ship 'A1'
+
+      expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
+      player_one.place_ship 'C1'
+      
+      expect(player_one.ship_count).to be 1
     end
   end
 end

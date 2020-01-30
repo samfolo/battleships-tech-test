@@ -15,7 +15,7 @@ class Player
   end
 
   def place_ship coordinate
-    if valid_coordinate?(coordinate) && new_ship_at(coordinate).location
+    if valid_coordinate?(coordinate) && open_water?(new_ship_at(coordinate))&.location
       @ships << new_ship_at(coordinate)
       puts "Ship placed at #{formatted coordinate}"
     else
@@ -39,5 +39,13 @@ class Player
 
   def valid_coordinate? coordinate
     /\A([A-J])(10|[1-9])\Z/.match coordinate
+  end
+
+  def open_water? ship
+    ship if ship.location&.all? { |coordinates| 
+      @ships.all? { |ships|
+        !ships.location.include? coordinates
+      }
+    }
   end
 end

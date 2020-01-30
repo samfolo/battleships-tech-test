@@ -1,7 +1,7 @@
 require 'player'
 
 RSpec.describe Player do
-  let(:test_ship) { double :ship, location: true }
+  let(:test_ship) { double :ship, location: [[0, 0], [1, 0], [2, 0], [3, 0]] }
   let(:test_ship_class) { double :ship_class, new: test_ship }
   let(:test_board_instance) { double :board, render: empty_board }
   let(:test_player) { Player.new test_board_instance, [], test_ship_class }
