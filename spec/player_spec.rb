@@ -63,13 +63,20 @@ RSpec.describe Player do
     expect(test_player.ship_count).to be 1
   end
 
-  it 'can take damage at a coordinate' do
-    expect(test_board_instance).to receive(:add_damage_coordinate).with [0, 0]
-    test_player.shot_at('A1')
-  end
+  context 'keeping track of received shots' do
+    it 'can take damage at coordinate A-1' do
+      expect(test_board_instance).to receive(:add_damage_coordinate).with [0, 0]
+      test_player.shot_at('A1')
+    end
 
-  it 'can take damage at a coordinate' do
-    expect(test_board_instance).to receive(:add_damage_coordinate).with [3, 4]
-    test_player.shot_at('D5')
+    it 'can take damage at a coordinate D-5' do
+      expect(test_board_instance).to receive(:add_damage_coordinate).with [3, 4]
+      test_player.shot_at('D5')
+    end
+
+    it 'can take damage at a coordinate F-6' do
+      expect(test_board_instance).to receive(:add_damage_coordinate).with [5, 5]
+      test_player.shot_at('F6')
+    end
   end
 end
