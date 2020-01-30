@@ -15,11 +15,13 @@ class Player
   end
 
   def place_ship coordinate
-    if ['I7', 'J5', 'H4', 'L16', 'AA8'].include? coordinate
-      puts CANNOT_PLACE_SHIP_HERE
-    else
-      @ships << @ship_class.new(coordinate)
+    puts CANNOT_PLACE_SHIP_HERE && return unless valid_coordinate?(coordinate)
+
+    if new_ship_at(coordinate).location
+      @ships << new_ship_at(coordinate)
       puts "Ship placed at #{formatted coordinate}"
+    else
+      puts CANNOT_PLACE_SHIP_HERE
     end
   end
 
@@ -31,5 +33,13 @@ class Player
 
   def formatted coordinate
     "#{coordinate[0]}-#{coordinate[1..-1]}"
+  end
+
+  def new_ship_at coordinate
+    @ship_class.new(coordinate)
+  end
+
+  def valid_coordinate? coordinate
+    !/\A([A-J])(10|[1-9])\Z/.match(coordinate).nil?
   end
 end

@@ -1,7 +1,7 @@
 require 'player'
 
 RSpec.describe Player do
-  let(:test_ship) { double :ship, location: [[0, 0], [1, 0], [2, 0], [3, 0]] }
+  let(:test_ship) { double :ship, location: true }
   let(:test_ship_class) { double :ship_class, new: test_ship }
   let(:test_board_instance) { double :board, render: empty_board }
   let(:test_player) { Player.new test_board_instance, [], test_ship_class }
@@ -55,35 +55,5 @@ RSpec.describe Player do
     test_player.place_ship 'F4'
 
     expect(test_player.ship_count).to be 1
-  end
-
-  context 'invalid placements' do
-    it 'cannot place a ship outside of the constraints of the board (I-7)' do
-      expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
-      test_player.place_ship 'I7'
-
-      expect(test_player.ship_count).to be 0
-    end
-
-    it 'cannot place a ship outside of the constraints of the board (H-4)' do
-      expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
-      test_player.place_ship 'H4'
-
-      expect(test_player.ship_count).to be 0
-    end
-
-    it 'cannot place a ship outside of the constraints of the board (L-16)' do
-      expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
-      test_player.place_ship 'L16'
-
-      expect(test_player.ship_count).to be 0
-    end
-
-    it 'cannot place a ship outside of the constraints of the board (AA-8)' do
-      expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
-      test_player.place_ship 'AA8'
-
-      expect(test_player.ship_count).to be 0
-    end
   end
 end
