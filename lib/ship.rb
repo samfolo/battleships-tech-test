@@ -29,9 +29,7 @@ class Ship
       when 'East' then (0..3).to_a.map { |el| [x_point + el, y_point] }
       when 'South' then (0..3).to_a.map { |el| [x_point, y_point + el] }
       when 'West' then (0..3).to_a.map { |el| [x_point - el, y_point] }
-      when 'North' then @coordinate == 'B4' ? [[1, 3], [1, 2], [1, 1], [1, 0]] :
-        @coordinate == 'E9' ? [[4, 8], [4, 7], [4, 6], [4, 5]] :
-        [[9, 9], [9, 8], [9, 7], [9, 6]]
+      when 'North' then (0..3).to_a.map { |el| [x_point, y_point - el] }
     end
   end
 end
