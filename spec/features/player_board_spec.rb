@@ -110,7 +110,7 @@ RSpec.describe "a player's board", type: :feature do
     expect(player_one.render_board).to eq board
   end
 
-  scenario 'a player places a ship at C2 and another at F-4 (facing south) then views their board' do
+  scenario 'a player places a ship at C2, another at F-4 (facing south) then views their board' do
     l1 =  "  A B C D E F G H I J     "
     l2 =  "+ - - - - - - - - - - +   "
     l3 =  "| • • • • • • • • • • | 1 "
@@ -129,6 +129,29 @@ RSpec.describe "a player's board", type: :feature do
 
     player_one.place_ship('C2')
     player_one.place_ship('F4', 'South')
+
+    expect(player_one.render_board).to eq board
+  end
+
+  scenario 'a player places a ship at I-10 facing West, another at D-5, then views their board' do
+    l1 =  "  A B C D E F G H I J     "
+    l2 =  "+ - - - - - - - - - - +   "
+    l3 =  "| • • • • • • • • • • | 1 "
+    l4 =  "| • • • • • • • • • • | 2 "
+    l5 =  "| • • • • • • • • • • | 3 "
+    l6 =  "| • • • • • • • • • • | 4 "
+    l7 =  "| • • • x x x x • • • | 5 "
+    l8 =  "| • • • • • • • • • • | 6 "
+    l9 =  "| • • • • • • • • • • | 7 "
+    l10 = "| • • • • • • • • • • | 8 "
+    l11 = "| • • • • • • • • • • | 9 "
+    l12 = "| • • • • • x x x x • | 10"
+    l13 = "+ - - - - - - - - - - +   "
+    
+    board = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13].join("\n")
+
+    player_one.place_ship('I10', 'West')
+    player_one.place_ship('D5', 'East')
 
     expect(player_one.render_board).to eq board
   end
