@@ -28,7 +28,8 @@ class Player
   end
 
   def shot_at coordinate
-    @board.add_damage_coordinate([0, 0])
+    damage_coordinate = coordinate == 'D5' ? [3, 4] : [0, 0]
+    @board.add_damage_coordinate(damage_coordinate)
   end
 
   private

@@ -67,4 +67,9 @@ RSpec.describe Player do
     expect(test_board_instance).to receive(:add_damage_coordinate).with [0, 0]
     test_player.shot_at('A1')
   end
+
+  it 'can take damage at a coordinate' do
+    expect(test_board_instance).to receive(:add_damage_coordinate).with [3, 4]
+    test_player.shot_at('D5')
+  end
 end
