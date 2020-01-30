@@ -76,6 +76,11 @@ RSpec.describe Ship do
         test_ship = Ship.new('B4', 'North')
         expect(test_ship.location).to eq [[1, 3], [1, 2], [1, 1], [1, 0]]
       end
+
+      it 'holds the coordinates [[4, 8], [4, 7], [4, 6] and [4, 5]] when passed E9 and North' do
+        test_ship = Ship.new('E9', 'North')
+        expect(test_ship.location).to eq [[4, 8], [4, 7], [4, 6], [4, 5]]
+      end
     end
   end 
 end
