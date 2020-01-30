@@ -40,6 +40,6 @@ class Player
   end
 
   def valid_coordinate? coordinate
-    !/\A([A-J])(10|[1-9])\Z/.match(coordinate).nil?
+    /\A([A-J])(10|[1-9])\Z/.match coordinate
   end
 end
