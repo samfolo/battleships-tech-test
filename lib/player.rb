@@ -27,6 +27,10 @@ class Player
     @ships.length
   end
 
+  def shot_at coordinate
+    @board.add_damage_coordinate([0, 0])
+  end
+
   private
 
   def formatted coordinate

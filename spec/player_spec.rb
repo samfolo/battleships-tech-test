@@ -3,7 +3,7 @@ require 'player'
 RSpec.describe Player do
   let(:test_ship) { double :ship, location: [[0, 0], [1, 0], [2, 0], [3, 0]] }
   let(:test_ship_class) { double :ship_class, new: test_ship }
-  let(:test_board_instance) { double :board, render: empty_board }
+  let(:test_board_instance) { double :board, render: empty_board, add_damage_coordinate: true }
   let(:test_player) { Player.new test_board_instance, [], test_ship_class }
   let(:empty_board) {
     l01 = "  A B C D E F G H I J     "
@@ -61,5 +61,10 @@ RSpec.describe Player do
     test_player.place_ship 'F4'
 
     expect(test_player.ship_count).to be 1
+  end
+
+  it 'can take damage at a coordinate' do
+    expect(test_board_instance).to receive(:add_damage_coordinate).with [0, 0]
+    test_player.shot_at('A1')
   end
 end
