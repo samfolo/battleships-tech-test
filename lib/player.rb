@@ -43,9 +43,7 @@ class Player
 
   def open_water? ship
     ship if ship.location&.all? { |coordinates| 
-      @ships.all? { |ships|
-        !ships.location.include? coordinates
-      }
+      @ships.all? { |ships| !ships.location.include? coordinates }
     }
   end
 end

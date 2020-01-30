@@ -99,10 +99,19 @@ RSpec.describe "a player's board", type: :feature do
   context 'overlapping ships' do
     scenario 'a player attempts to place their ship at A-1 after placing a ship at C-1' do
       player_one.place_ship 'A1'
-
+      
       expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
       player_one.place_ship 'C1'
+
+      expect(player_one.ship_count).to be 1
+    end
+
+    scenario 'a player attempts to place their ship at B-8 after placing a ship at E-8' do
+      player_one.place_ship 'B8'
       
+      expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
+      player_one.place_ship 'E8'
+
       expect(player_one.ship_count).to be 1
     end
   end
