@@ -1,7 +1,7 @@
 require 'player'
 
 RSpec.describe Player do
-  let(:test_ship) { double :ship, location: [[0, 0], [1, 0], [2, 0], [3, 0]] }
+  let(:test_ship) { double :ship, location: [[4, 0], [3, 0], [2, 0], [1, 0]] }
   let(:test_ship_class) { double :ship_class, new: test_ship }
   let(:test_board_instance) { double :board, render: empty_board, add_damage_coordinate: true }
   let(:test_player) { Player.new test_board_instance, [], test_ship_class }
@@ -82,6 +82,15 @@ RSpec.describe Player do
     it 'can take damage at a coordinate G-10' do
       expect(test_board_instance).to receive(:add_damage_coordinate).with [6, 9]
       test_player.shot_at('G10')
+    end
+
+    context 'a shot makes contact with a ship' do
+      it 'alerts the player via the console' do
+        test_player.place_ship 'E1', 'West'
+
+        expect(STDOUT).to receive(:puts).with Player::HIT
+        test_player.shot_at('C1')
+      end
     end
   end
 end
