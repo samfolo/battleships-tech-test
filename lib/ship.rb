@@ -28,7 +28,8 @@ class Ship
     case orientation
     when 'East' then (0..3).to_a.map { |el| [x_point + el, y_point] }
     when 'South' then (0..3).to_a.map { |el| [x_point, y_point + el] }
-    when 'West' then [[9, 0], [8, 0], [7, 0], [6, 0]]
+    when 'West' then @coordinate == 'H4' ? [[7, 3], [6, 3], [5, 3], [4, 3]] : 
+      [[9, 0], [8, 0], [7, 0], [6, 0]]
     end
   end
 end
