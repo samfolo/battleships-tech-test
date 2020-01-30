@@ -32,7 +32,7 @@ class Player
     @ships.length
   end
 
-  def shot_at coordinate
+  def attacked_at coordinate
     x = X_AXIS[coordinate[0]]
     y = coordinate[1..-1].to_i - 1
     @board.add_damage_coordinate([x, y])

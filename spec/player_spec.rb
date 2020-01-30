@@ -66,22 +66,22 @@ RSpec.describe Player do
   context 'keeping track of received shots' do
     it 'can take damage at coordinate A-1' do
       expect(test_board_instance).to receive(:add_damage_coordinate).with [0, 0]
-      test_player.shot_at('A1')
+      test_player.attacked_at('A1')
     end
 
     it 'can take damage at a coordinate D-5' do
       expect(test_board_instance).to receive(:add_damage_coordinate).with [3, 4]
-      test_player.shot_at('D5')
+      test_player.attacked_at('D5')
     end
 
     it 'can take damage at a coordinate F-6' do
       expect(test_board_instance).to receive(:add_damage_coordinate).with [5, 5]
-      test_player.shot_at('F6')
+      test_player.attacked_at('F6')
     end
 
     it 'can take damage at a coordinate G-10' do
       expect(test_board_instance).to receive(:add_damage_coordinate).with [6, 9]
-      test_player.shot_at('G10')
+      test_player.attacked_at('G10')
     end
 
     context 'a shot makes contact with a ship' do
@@ -89,7 +89,7 @@ RSpec.describe Player do
         test_player.place_ship 'E1', 'West'
 
         expect(STDOUT).to receive(:puts).with Player::HIT
-        test_player.shot_at('C1')
+        test_player.attacked_at('C1')
       end
     end
   end

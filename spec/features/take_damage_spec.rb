@@ -27,7 +27,7 @@ RSpec.describe "a player taking damage", type: :feature do
 
     board = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13].join("\n")
 
-    player_one.shot_at('G2')
+    player_one.attacked_at('G2')
 
     expect(player_one.render_board).to eq board
   end
@@ -49,9 +49,9 @@ RSpec.describe "a player taking damage", type: :feature do
 
     board = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13].join("\n")
 
-    player_one.shot_at('B7')
-    player_one.shot_at('F1')
-    player_one.shot_at('I8')
+    player_one.attacked_at('B7')
+    player_one.attacked_at('F1')
+    player_one.attacked_at('I8')
 
     expect(player_one.render_board).to eq board
   end
@@ -74,7 +74,7 @@ RSpec.describe "a player taking damage", type: :feature do
     board = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13].join("\n")
 
     expect(STDOUT).to receive(:puts).with Player::HIT
-    player_one.shot_at('D2')
+    player_one.attacked_at('D2')
 
     expect(player_one.render_board).to eq board
   end
