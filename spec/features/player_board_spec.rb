@@ -212,7 +212,7 @@ RSpec.describe "a player's board", type: :feature do
       player_one.place_ship 'F5'
     end
 
-    context 'intersecting ship placement attempts' do
+    context 'intersecting ships' do
       scenario 'a player attempts to place a North-facing ship at H-6 after placing a  ship at F-5' do
         player_one.place_ship 'F5'
         
