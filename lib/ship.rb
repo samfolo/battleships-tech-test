@@ -29,6 +29,7 @@ class Ship
     when 'East' then (0..3).to_a.map { |el| [x_point + el, y_point] }
     when 'South' then (0..3).to_a.map { |el| [x_point, y_point + el] }
     when 'West' then (0..3).to_a.map { |el| [x_point - el, y_point] }
+    when 'North' then [[9, 9], [9, 8], [9, 7], [9, 6]]
     end
   end
 end
