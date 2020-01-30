@@ -56,4 +56,13 @@ RSpec.describe Player do
 
     expect(test_player.ship_count).to be 1
   end
+
+  context 'invalid placements' do
+    it 'cannot place a ship outside of the constraints of the board (I-7)' do
+      expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
+      test_player.place_ship 'I7'
+
+      expect(test_player.ship_count).to be 0
+    end
+  end
 end

@@ -65,4 +65,9 @@ RSpec.describe "a player's board", type: :feature do
 
     expect(player_one.render_board).to eq board
   end
+
+  scenario 'a player attempts to place their ship at J-5' do
+    expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
+    player_one.place_ship('J5')
+  end
 end

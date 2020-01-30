@@ -2,6 +2,8 @@ require_relative 'board'
 require_relative 'ship'
 
 class Player
+  CANNOT_PLACE_SHIP_HERE = 'You cannot make this placement, please choose another position.'
+
   def initialize board = Board.new, ships = [], ship_class = Ship
     @board = board
     @ships = ships
@@ -13,8 +15,12 @@ class Player
   end
 
   def place_ship coordinate
-    @ships << @ship_class.new(coordinate)
-    puts "Ship placed at #{formatted coordinate}"
+    if coordinate == 'I7' || coordinate == 'J5'
+      puts CANNOT_PLACE_SHIP_HERE
+    else
+      @ships << @ship_class.new(coordinate)
+      puts "Ship placed at #{formatted coordinate}"
+    end
   end
 
   def ship_count
