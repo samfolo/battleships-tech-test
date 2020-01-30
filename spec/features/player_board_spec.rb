@@ -68,7 +68,7 @@ RSpec.describe "a player's board", type: :feature do
 
   
 
-  context 'invalid placements' do
+  context 'placements outside of the constraints of the board' do
     before(:each) do
       expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
     end
@@ -78,7 +78,7 @@ RSpec.describe "a player's board", type: :feature do
     end
 
     scenario 'a player attempts to place their ship at J-5' do
-      player_one.place_ship('J5')
+      player_one.place_ship 'J5'
     end
 
     scenario 'a player attempts to place their ship at I-7' do
@@ -87,6 +87,14 @@ RSpec.describe "a player's board", type: :feature do
 
     scenario 'a player attempts to place their ship at H-4' do
       player_one.place_ship 'H4'
+    end
+
+    it 'a player attempts to place their ship at L-16' do
+      player_one.place_ship 'L16'
+    end
+
+    it 'a player attempts to place their ship at AA-8' do
+      player_one.place_ship 'AA8'
     end
   end
 end

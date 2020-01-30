@@ -15,9 +15,7 @@ class Player
   end
 
   def place_ship coordinate
-    puts CANNOT_PLACE_SHIP_HERE && return unless valid_coordinate?(coordinate)
-
-    if new_ship_at(coordinate).location
+    if valid_coordinate?(coordinate) && new_ship_at(coordinate).location
       @ships << new_ship_at(coordinate)
       puts "Ship placed at #{formatted coordinate}"
     else
