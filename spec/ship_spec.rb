@@ -21,25 +21,39 @@ RSpec.describe Ship do
     expect(test_ship.location).to eq [[5, 9], [6, 9], [7, 9], [8, 9]]
   end
 
-  describe "a ship's orientation" do
-    it 'holds the coordinates [0, 0], [0, 1], [0, 2] and [0, 3] when passed A1 and South' do
-      test_ship = Ship.new('A1', 'South')
-      expect(test_ship.location).to eq [[0, 0], [0, 1], [0, 2], [0, 3]]
+  describe "a ship's orientation (West, South and East)" do
+    context 'South' do
+      it 'holds the coordinates [0, 0], [0, 1], [0, 2] and [0, 3] when passed A1 and South' do
+        test_ship = Ship.new('A1', 'South')
+        expect(test_ship.location).to eq [[0, 0], [0, 1], [0, 2], [0, 3]]
+      end
+
+      it 'holds the coordinates [3, 2], [3, 3], [3, 4] and [3, 5] when passed D3 and South' do
+        test_ship = Ship.new('D3', 'South')
+        expect(test_ship.location).to eq [[3, 2], [3, 3], [3, 4], [3, 5]]
+      end
+
+      it 'holds the coordinates [[9, 6], [9, 7], [9, 8] and [9, 9]] when passed J7 and South' do
+        test_ship = Ship.new('J7', 'South')
+        expect(test_ship.location).to eq [[9, 6], [9, 7], [9, 8], [9, 9]]
+      end
+
+      it 'holds the coordinates [[4, 1], [4, 2], [4, 3] and [4, 4]] when passed J6 and South' do
+        test_ship = Ship.new('E2', 'South')
+        expect(test_ship.location).to eq [[4, 1], [4, 2], [4, 3], [4, 4]]
+      end
+
+      it 'holds the coordinates [[4, 1], [4, 2], [4, 3] and [4, 4]] when passed J6 and South' do
+        test_ship = Ship.new('E2', 'South')
+        expect(test_ship.location).to eq [[4, 1], [4, 2], [4, 3], [4, 4]]
+      end
     end
 
-    it 'holds the coordinates [3, 2], [3, 3], [3, 4] and [3, 5] when passed D3 and South' do
-      test_ship = Ship.new('D3', 'South')
-      expect(test_ship.location).to eq [[3, 2], [3, 3], [3, 4], [3, 5]]
-    end
-
-    it 'holds the coordinates [[9, 6], [9, 7], [9, 8] and [9, 9]] when passed J7 and South' do
-      test_ship = Ship.new('J7', 'South')
-      expect(test_ship.location).to eq [[9, 6], [9, 7], [9, 8], [9, 9]]
-    end
-
-    it 'holds the coordinates [[4, 1], [4, 2], [4, 3] and [4, 4]] when passed J6 and South' do
-      test_ship = Ship.new('E2', 'South')
-      expect(test_ship.location).to eq [[4, 1], [4, 2], [4, 3], [4, 4]]
+    context 'West' do
+      it 'holds the coordinates [[9, 0], [8, 0], [7, 0] and [6, 0]] when passed A10 and West' do
+        test_ship = Ship.new('A10', 'West')
+        expect(test_ship.location).to eq [[9, 0], [8, 0], [7, 0], [6, 0]]
+      end
     end
   end 
 end
