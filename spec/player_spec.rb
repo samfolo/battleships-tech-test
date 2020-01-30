@@ -32,20 +32,26 @@ RSpec.describe Player do
   end
 
   describe 'confirmation of ship placement' do
+    it 'is placed facing east by default' do
+      confirmation = "Ship placed at A-1, East" + "\n"
+
+      expect { test_player.place_ship 'A1' }.to output(confirmation).to_stdout
+    end
+
     it 'is given when a ship is placed at B-2' do
-      confirmation = "Ship placed at B-2" + "\n"
+      confirmation = "Ship placed at B-2, East" + "\n"
 
       expect { test_player.place_ship 'B2' }.to output(confirmation).to_stdout
     end
 
     it 'is given when a ship is placed at D-9' do
-      confirmation = "Ship placed at D-9" + "\n"
+      confirmation = "Ship placed at D-9, East" + "\n"
 
       expect { test_player.place_ship 'D9' }.to output(confirmation).to_stdout
     end
 
     it 'is given when a ship is placed at G-10' do
-      confirmation = "Ship placed at G-10" + "\n"
+      confirmation = "Ship placed at G-10, East" + "\n"
 
       expect { test_player.place_ship 'G10' }.to output(confirmation).to_stdout
     end

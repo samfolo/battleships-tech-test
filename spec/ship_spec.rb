@@ -20,4 +20,11 @@ RSpec.describe Ship do
     test_ship = Ship.new('F10')
     expect(test_ship.location).to eq [[5, 9], [6, 9], [7, 9], [8, 9]]
   end
+
+  describe "a ship's orientation" do
+    it 'holds the coordinates [0, 0], [0, 1], [0, 2] and [0, 3] when passed A1 and South' do
+      test_ship = Ship.new('A1', 'South')
+      expect(test_ship.location).to eq [[0, 0], [0, 1], [0, 2], [0, 3]]
+    end
+  end 
 end

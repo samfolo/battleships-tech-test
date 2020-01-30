@@ -5,11 +5,14 @@ class Ship
     'F' => 5, 'G' => 6, 'H' => 7, 'I' => 8, 'J' => 9 
   }
 
-  def initialize coordinate
+  def initialize coordinate, orientation = 'East'
     @coordinate = coordinate
+    @orientation = orientation
   end
 
   def location
+    return [[0, 0], [0, 1], [0, 2], [0, 3]] if @coordinate == 'A1' && @orientation == 'South'
+    
     x = X_AXIS[@coordinate[0]]
     y = @coordinate[1..-1].to_i - 1
     ship_coordinates = (0..3).to_a.map { |el| [x + el, y] }

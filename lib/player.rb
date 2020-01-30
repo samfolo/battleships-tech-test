@@ -14,10 +14,10 @@ class Player
     @board.render @ships
   end
 
-  def place_ship coordinate
-    if valid_coordinate?(coordinate) && open_water?(new_ship_at(coordinate))&.location
-      @ships << new_ship_at(coordinate)
-      puts "Ship placed at #{formatted coordinate}"
+  def place_ship coordinate, orientation = 'East'
+    if valid_coordinate?(coordinate) && open_water?(new_ship_at(coordinate, orientation))&.location
+      @ships << new_ship_at(coordinate, orientation)
+      puts "Ship placed at #{formatted coordinate}, #{orientation}"
     else
       puts CANNOT_PLACE_SHIP_HERE
     end
@@ -33,8 +33,8 @@ class Player
     "#{coordinate[0]}-#{coordinate[1..-1]}"
   end
 
-  def new_ship_at coordinate
-    @ship_class.new(coordinate)
+  def new_ship_at coordinate, orientation
+    @ship_class.new(coordinate, orientation)
   end
 
   def valid_coordinate? coordinate
