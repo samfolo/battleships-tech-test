@@ -1,9 +1,17 @@
 class Board
+  def initialize
+    @damage_coordinates = []
+  end
+
   def render ships = []
     coordinates = []
     ships.each { |ship| coordinates.concat ship.location }
     core_grid = render_core_grid coordinates
     [header, border, core_grid, border].join("\n")
+  end
+
+  def add_damage_coordinate coordinate
+    @damage_coordinates << coordinate
   end
 
   private
@@ -16,8 +24,9 @@ class Board
     "+ - - - - - - - - - - +   "
   end
 
-  def render_node_at x_coordinate, y_coordinate, coordinates
-    coordinates.include?([x_coordinate, y_coordinate]) ? 'x' : '•'
+  def render_node_at x_coordinate, y_coordinate, ship_coordinates
+    @damage_coordinates.include?([x_coordinate, y_coordinate]) ? '!' :
+    ship_coordinates.include?([x_coordinate, y_coordinate]) ? 'x' : '•'
   end
 
   def render_core_grid coordinates

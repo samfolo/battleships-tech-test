@@ -3,6 +3,10 @@ require_relative 'ship'
 
 class Player
   CANNOT_PLACE_SHIP_HERE = 'You cannot make this placement, please choose another position.'
+  X_AXIS = { 
+    'A' => 0, 'B' => 1, 'C' => 2, 'D' => 3, 'E' => 4, 
+    'F' => 5, 'G' => 6, 'H' => 7, 'I' => 8, 'J' => 9 
+  }
 
   def initialize board = Board.new, ships = [], ship_class = Ship
     @board = board
@@ -25,6 +29,13 @@ class Player
 
   def ship_count
     @ships.length
+  end
+
+  def shot_at coordinate
+    x = X_AXIS[coordinate[0]]
+    y = coordinate[1..-1].to_i - 1
+    damage_coordinate = [x, y]
+    @board.add_damage_coordinate(damage_coordinate)
   end
 
   private
