@@ -2,6 +2,7 @@ require_relative 'board'
 require_relative 'ship'
 
 class Player
+  HIT = 'Hit!'
   CANNOT_PLACE_SHIP_HERE = 'You cannot make this placement, please choose another position.'
   X_AXIS = { 
     'A' => 0, 'B' => 1, 'C' => 2, 'D' => 3, 'E' => 4, 
@@ -31,11 +32,11 @@ class Player
     @ships.length
   end
 
-  def shot_at coordinate
+  def attacked_at coordinate
     x = X_AXIS[coordinate[0]]
     y = coordinate[1..-1].to_i - 1
-    damage_coordinate = [x, y]
-    @board.add_damage_coordinate(damage_coordinate)
+    @board.add_damage_coordinate([x, y])
+    hit?([x, y])
   end
 
   private
@@ -56,5 +57,9 @@ class Player
     ship if ship.location&.all? { |coordinates| 
       @ships.all? { |ships| !ships.location.include? coordinates }
     }
+  end
+
+  def hit? coordinate
+    puts HIT if @ships.any? { |ship| ship.location.include? coordinate }
   end
 end
