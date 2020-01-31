@@ -75,7 +75,7 @@ Complex verbs, more verbs than nouns
 |                                        |                                |                             |                     |                                        |
 | `@ships`                               | `@coordinates`                 | `@ships`                    | `@player_one`       | `@ship_types`                          |
 | `@board`                               | `@damage_points (coordinates)` | `@hit_points (coordinates)` | `@player_two`       |                                        |
-| `@shot_history`                        |                                |                             | `@ship_creator`     |                                        |
+| `@shot_history`                        | `@size`                        |                             | `@ship_creator`     |                                        |
 |                                        |                                |                             |                     |                                        |
 | `#fire_at(coordinate)`                 | `#take_damage(coordinate)`     | `#render`                   | `#execute(command)` | `#create(ship, coordinate, direction)` |
 | `#view_shot_history`                   | `#sunken? (private)`           |                             | `#evaluate_winner`  |                                        |
