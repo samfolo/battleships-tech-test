@@ -113,6 +113,18 @@ RSpec.describe Ship do
 
         expect(test_ship.location).to eq [[9, 9], [9, 8], [9, 7], [9, 6], [9, 5]]
       end
+
+      it 'can have a size of 6 nodes' do
+        test_ship = Ship.new('I7', 'West', '6')
+
+        expect(test_ship.location).to eq [[8, 6], [7, 6], [6, 6], [5, 6], [4, 6], [3, 6]]
+      end
+
+      it 'can have a size of 6 nodes' do
+        test_ship = Ship.new('E3', 'South', '6')
+
+        expect(test_ship.location).to eq [[4, 2], [4, 3], [4, 4], [4, 5], [4, 6], [4, 7]]
+      end
     end
   end 
 end
