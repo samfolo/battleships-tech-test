@@ -25,7 +25,8 @@ class Ship
   end
 
   def assigned_coordinates_by x_point, y_point, orientation
-    return [0, 0], [1, 0] if @size == '2'
+    return [0, 0], [1, 0] if @size == '2' && @orientation == 'East'
+    return [0, 9], [0, 8] if @size == '2' && @orientation == 'North'
     return [3, 4], [2, 4], [1, 4] if @size == '3'
 
     case orientation
