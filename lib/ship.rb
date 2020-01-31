@@ -4,9 +4,10 @@ class Ship
     'F' => 5, 'G' => 6, 'H' => 7, 'I' => 8, 'J' => 9 
   }
 
-  def initialize coordinate, orientation = 'East'
+  def initialize coordinate, orientation = 'East', size = 4
     @coordinate = coordinate
     @orientation = orientation
+    @size = size
   end
 
   def location
@@ -24,11 +25,13 @@ class Ship
   end
 
   def assigned_coordinates_by x_point, y_point, orientation
+    size = @size.to_i - 1
+    
     case orientation
-      when 'East' then (0..3).to_a.map { |el| [x_point + el, y_point] }
-      when 'South' then (0..3).to_a.map { |el| [x_point, y_point + el] }
-      when 'West' then (0..3).to_a.map { |el| [x_point - el, y_point] }
-      when 'North' then (0..3).to_a.map { |el| [x_point, y_point - el] }
+      when 'East' then (0..size).to_a.map { |el| [x_point + el, y_point] }
+      when 'South' then (0..size).to_a.map { |el| [x_point, y_point + el] }
+      when 'West' then (0..size).to_a.map { |el| [x_point - el, y_point] }
+      when 'North' then (0..size).to_a.map { |el| [x_point, y_point - el] }
     end
   end
 end

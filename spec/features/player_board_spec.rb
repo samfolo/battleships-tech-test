@@ -156,6 +156,30 @@ RSpec.describe "a player's board", type: :feature do
     expect(player_one.render_board).to eq board
   end
 
+  context 'choosing sizes' do
+    scenario 'a player places a West-facing ship of length 2 at C-1 then views their board' do
+      l01 = "  A B C D E F G H I J     "
+      l02 = "+ - - - - - - - - - - +   "
+      l03 = "| • x x • • • • • • • | 1 "
+      l04 = "| • • • • • • • • • • | 2 "
+      l05 = "| • • • • • • • • • • | 3 "
+      l06 = "| • • • • • • • • • • | 4 "
+      l07 = "| • • • • • • • • • • | 5 "
+      l08 = "| • • • • • • • • • • | 6 "
+      l09 = "| • • • • • • • • • • | 7 "
+      l10 = "| • • • • • • • • • • | 8 "
+      l11 = "| • • • • • • • • • • | 9 "
+      l12 = "| • • • • • • • • • • | 10"
+      l13 = "+ - - - - - - - - - - +   "
+
+      board = [l01, l02, l03, l04, l05, l06, l07, l08, l09, l10, l11, l12, l13].join("\n")
+
+      player_one.place_ship 'C1', 'West', '2'
+
+      expect(player_one.render_board).to eq board
+    end
+  end
+
   context 'placements outside of the constraints of the board' do
     before(:each) do
       expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
@@ -213,7 +237,7 @@ RSpec.describe "a player's board", type: :feature do
     end
 
     context 'intersecting ships' do
-      scenario 'a player attempts to place a North-facing ship at H-6 after placing a  ship at F-5' do
+      scenario 'a player attempts to place a North-facing ship at H-6 after placing a ship at F-5' do
         player_one.place_ship 'F5'
         
         expect(STDOUT).to receive(:puts).with Player::CANNOT_PLACE_SHIP_HERE
