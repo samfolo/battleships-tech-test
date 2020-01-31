@@ -20,7 +20,7 @@ class Player
   end
 
   def place_ship coordinate, orientation = 'East', size = '4'
-    if valid_coordinate?(coordinate) && open_water?(new_ship_at(coordinate, orientation, size))&.location
+    if valid_placement(coordinate, orientation, size)
       @ships << new_ship_at(coordinate, orientation, size)
       puts "Ship placed at #{formatted coordinate}, #{orientation}"
     else
@@ -49,16 +49,21 @@ class Player
     @ship_class.new(coordinate, orientation, size)
   end
 
-  def valid_coordinate? coordinate
-    /\A([A-J])(10|[1-9])\Z/.match coordinate
-  end
-
   def open_water? ship
     ship if ship.location&.all? { |coordinates| 
       @ships.all? { |ships| !ships.location.include? coordinates }
     }
   end
+  
+  def valid_coordinate? coordinate
+    /\A([A-J])(10|[1-9])\Z/.match coordinate
+  end
 
+  def valid_placement coordinate, orientation, size
+    valid_coordinate?(coordinate) && 
+    open_water?(new_ship_at(coordinate, orientation, size))&.location
+  end
+  
   def hit? coordinate
     puts HIT if @ships.any? { |ship| ship.location.include? coordinate }
   end
