@@ -82,5 +82,13 @@ RSpec.describe Ship do
         expect(test_ship.location).to eq [[4, 8], [4, 7], [4, 6], [4, 5]]
       end
     end
+
+    context '@size' do
+      it 'can have a minimum size of 2 nodes' do
+        test_ship = Ship.new('A1', 'East', '2')
+
+        expect(test_ship.location).to eq [[0, 0], [1, 0]]
+      end
+    end
   end 
 end
