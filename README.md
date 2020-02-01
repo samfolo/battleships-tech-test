@@ -83,6 +83,7 @@ Complex verbs, more verbs than nouns
 |                                        |                                |                             |                     |                                        |
 | `::CANNOT_PLACE_SHIP_HERE`             |                                | `::NO_SHIPS_LEFT`           |                     | `::INVALID_SHIP_TYPE`                  |
 | `::INVALID_SHOT`                       |                                |                             |                     |                                        |
+| `::HIT`                                |                                |                             |                     |                                        |
 
 Once the game has started, there will have to be a method on the game class which solely deals with commands entered via `STDIN.gets.chomp`, possibly a switch statement.
 
