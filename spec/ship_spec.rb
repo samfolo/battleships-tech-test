@@ -134,5 +134,12 @@ RSpec.describe Ship do
 
       expect(test_ship.sunk?).to be false
     end
+
+    it 'returns false for a ship which been hit once' do
+      test_ship = Ship.new('A1', 'South', '5')
+      test_ship.take_damage [0, 1]
+
+      expect(test_ship.sunk?).to be false
+    end
   end
 end

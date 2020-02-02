@@ -16,6 +16,9 @@ class Ship
     validate(assigned_coordinates_by x, y, @orientation)
   end
 
+  def take_damage coordinate
+  end
+
   def sunk?
     false
   end
