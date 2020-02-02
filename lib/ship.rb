@@ -6,6 +6,7 @@ class Ship
 
   def initialize coordinate, orientation = 'East', size = 4
     @coordinate = coordinate
+    @damage_coordinates = []
     @orientation = orientation
     @size = size
   end
@@ -17,9 +18,11 @@ class Ship
   end
 
   def take_damage coordinate
+    @damage_coordinates.push coordinate
   end
 
   def sunk?
+    return true if @damage_coordinates.length == 4
     false
   end
 
