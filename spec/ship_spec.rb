@@ -82,49 +82,57 @@ RSpec.describe Ship do
         expect(test_ship.location).to eq [[4, 8], [4, 7], [4, 6], [4, 5]]
       end
     end
+  end
+  
+  context '@size' do
+    it 'can have a minimum size of 2 nodes' do
+      test_ship = Ship.new('A1', 'East', '2')
 
-    context '@size' do
-      it 'can have a minimum size of 2 nodes' do
-        test_ship = Ship.new('A1', 'East', '2')
-
-        expect(test_ship.location).to eq [[0, 0], [1, 0]]
-      end
-
-      it 'can have a size of 2 nodes facing North' do
-        test_ship = Ship.new('A10', 'North', '2')
-
-        expect(test_ship.location).to eq [[0, 9], [0, 8]]
-      end
-
-      it 'can have a size of 3 nodes' do
-        test_ship = Ship.new('D5', 'West', '3')
-
-        expect(test_ship.location).to eq [[3, 4], [2, 4], [1, 4]]
-      end
-
-      it 'has a default size of 4 nodes' do
-        test_ship = Ship.new('J10', 'North')
-
-        expect(test_ship.location).to eq [[9, 9], [9, 8], [9, 7], [9, 6]]
-      end
-
-      it 'can have a size of 5 nodes' do
-        test_ship = Ship.new('J10', 'North', '5')
-
-        expect(test_ship.location).to eq [[9, 9], [9, 8], [9, 7], [9, 6], [9, 5]]
-      end
-
-      it 'can have a size of 6 nodes' do
-        test_ship = Ship.new('I7', 'West', '6')
-
-        expect(test_ship.location).to eq [[8, 6], [7, 6], [6, 6], [5, 6], [4, 6], [3, 6]]
-      end
-
-      it 'can have a size of 6 nodes' do
-        test_ship = Ship.new('E3', 'South', '6')
-
-        expect(test_ship.location).to eq [[4, 2], [4, 3], [4, 4], [4, 5], [4, 6], [4, 7]]
-      end
+      expect(test_ship.location).to eq [[0, 0], [1, 0]]
     end
-  end 
+
+    it 'can have a size of 2 nodes facing North' do
+      test_ship = Ship.new('A10', 'North', '2')
+
+      expect(test_ship.location).to eq [[0, 9], [0, 8]]
+    end
+
+    it 'can have a size of 3 nodes' do
+      test_ship = Ship.new('D5', 'West', '3')
+
+      expect(test_ship.location).to eq [[3, 4], [2, 4], [1, 4]]
+    end
+
+    it 'has a default size of 4 nodes' do
+      test_ship = Ship.new('J10', 'North')
+
+      expect(test_ship.location).to eq [[9, 9], [9, 8], [9, 7], [9, 6]]
+    end
+
+    it 'can have a size of 5 nodes' do
+      test_ship = Ship.new('J10', 'North', '5')
+
+      expect(test_ship.location).to eq [[9, 9], [9, 8], [9, 7], [9, 6], [9, 5]]
+    end
+
+    it 'can have a size of 6 nodes' do
+      test_ship = Ship.new('I7', 'West', '6')
+
+      expect(test_ship.location).to eq [[8, 6], [7, 6], [6, 6], [5, 6], [4, 6], [3, 6]]
+    end
+
+    it 'can have a size of 6 nodes' do
+      test_ship = Ship.new('E3', 'South', '6')
+
+      expect(test_ship.location).to eq [[4, 2], [4, 3], [4, 4], [4, 5], [4, 6], [4, 7]]
+    end
+  end
+
+  describe '#sunk' do
+    it 'returns false for a brand new ship' do
+      test_ship = Ship.new('A1', 'South', '5')
+
+      expect(test_ship.sunk?).to be false
+    end
+  end
 end

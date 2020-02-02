@@ -16,6 +16,10 @@ class Ship
     validate(assigned_coordinates_by x, y, @orientation)
   end
 
+  def sunk?
+    false
+  end
+
   private
 
   def validate ship_coordinates
@@ -34,4 +38,5 @@ class Ship
       when 'North' then (0..size).to_a.map { |el| [x_point, y_point - el] }
     end
   end
+
 end
