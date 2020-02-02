@@ -10,8 +10,9 @@ class Board
     [header, border, core_grid, border].join("\n")
   end
 
-  def add_damage_coordinate coordinate
+  def add_damage_coordinate coordinate, ship = nil
     @damage_coordinates << coordinate
+    ship&.take_damage(coordinate) if ship&.location&.include? coordinate
   end
 
   private

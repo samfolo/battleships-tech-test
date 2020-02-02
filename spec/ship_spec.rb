@@ -128,9 +128,10 @@ RSpec.describe Ship do
     end
   end
 
-  describe '#sunk' do
+  describe '#sunk?' do
     let(:test_ship) { Ship.new('A1', 'South', '4') }
     let(:test_ship_two) { Ship.new('E1', 'East', '5') }
+    let(:test_ship_three) { Ship.new('B4', 'North', '2') }
 
     it 'returns false for a brand new ship' do
       expect(test_ship.sunk?).to be false
@@ -174,6 +175,13 @@ RSpec.describe Ship do
       test_ship_two.take_damage [8, 0]
 
       expect(test_ship_two.sunk?).to be true
+    end
+    
+    it 'returns true for a 2 node ship which been hit twice' do
+      test_ship_three.take_damage [1, 3]
+      test_ship_three.take_damage [1, 2]
+
+      expect(test_ship_three.sunk?).to be true
     end
   end
 end

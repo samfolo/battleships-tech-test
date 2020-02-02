@@ -1,7 +1,8 @@
 require 'player'
 
 RSpec.describe Player do
-  let(:test_ship) { double :ship, location: [[4, 0], [3, 0], [2, 0], [1, 0]] }
+  let(:test_ship) { double :ship, location: [[4, 0], [3, 0], [2, 0], [1, 0]], sunk?: false, take_damage: nil }
+  let(:test_ship_two) { double :ship, location: [[0, 0], [0, 1], [0, 2], [0, 3]], sunk?: false, take_damage: nil }
   let(:test_ship_class) { double :ship_class, new: test_ship }
   let(:test_board_instance) { double :board, render: empty_board, add_damage_coordinate: true }
   let(:test_player) { Player.new test_board_instance, [], test_ship_class }
@@ -91,6 +92,19 @@ RSpec.describe Player do
         expect(STDOUT).to receive(:puts).with Player::HIT
         test_player.attacked_at('C1')
       end
+    end
+  end
+
+  context 'a player loses a ship' do
+    it 'removes the ship from the game' do
+      allow(test_ship_class).to receive(:new).and_return test_ship, test_ship_two
+      allow(test_ship_two).to receive(:sunk?).and_return false, true
+
+      test_player.place_ship('E1', 'West')
+      test_player.place_ship('A1', 'South', '2')
+
+      test_player.attacked_at('A1')
+      expect { test_player.attacked_at('B1') }.to change { test_player.ship_count }.by 1 * -1
     end
   end
 end
