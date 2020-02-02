@@ -22,7 +22,7 @@ class Ship
   end
 
   def sunk?
-    return true if @damage_coordinates.length == 4
+    return true if @damage_coordinates.length >= 4
     false
   end
 
