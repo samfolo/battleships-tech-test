@@ -6,6 +6,7 @@ class Ship
 
   def initialize coordinate, orientation = 'East', size = 4
     @coordinate = coordinate
+    @damage_coordinates = []
     @orientation = orientation
     @size = size
   end
@@ -14,6 +15,16 @@ class Ship
     x = X_AXIS[@coordinate[0]]
     y = @coordinate[1..-1].to_i - 1
     validate(assigned_coordinates_by x, y, @orientation)
+  end
+
+  def take_damage coordinate
+    @damage_coordinates.push coordinate
+  end
+
+  def sunk?
+    return true if @damage_coordinates.length == location.length
+    
+    false
   end
 
   private
@@ -34,4 +45,5 @@ class Ship
       when 'North' then (0..size).to_a.map { |el| [x_point, y_point - el] }
     end
   end
+
 end

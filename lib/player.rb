@@ -3,6 +3,7 @@ require_relative 'ship'
 
 class Player
   HIT = 'Hit!'
+  SHIP_SUNK = 'A ship has been sunken!'
   CANNOT_PLACE_SHIP_HERE = 'You cannot make this placement, please choose another position.'
   X_AXIS = { 
     'A' => 0, 'B' => 1, 'C' => 2, 'D' => 3, 'E' => 4, 
@@ -36,6 +37,7 @@ class Player
     x = X_AXIS[coordinate[0]]
     y = coordinate[1..-1].to_i - 1
     @board.add_damage_coordinate([x, y])
+    chart_damage([x, y])
     hit?([x, y])
   end
 
@@ -66,5 +68,16 @@ class Player
   
   def hit? coordinate
     puts HIT if @ships.any? { |ship| ship.location.include? coordinate }
+    remove_sunken_ship && puts(SHIP_SUNK) if @ships.any? { |ship| ship.sunk? }
+  end
+
+  def chart_damage coordinate
+    @ships.each { |ship|
+      ship.take_damage(coordinate) if ship.location&.include? coordinate
+    }
+  end
+
+  def remove_sunken_ship
+    @ships = @ships.reject { |ship| ship.sunk? }
   end
 end
